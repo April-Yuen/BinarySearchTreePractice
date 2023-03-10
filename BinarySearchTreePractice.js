@@ -11,7 +11,7 @@ class Node {
 class BST {
     constructor(value){
         this.root = new Node(value)
-        this.count = 0
+        this.count = 1
     }
 
     size(){
@@ -106,6 +106,7 @@ class BST {
             if(node.right) traverse(node.right)
         }
 
+        traverse(this.root)
         return result
     }
 
@@ -122,7 +123,7 @@ class BST {
             // if right child exists, go right again
             if(node.right) traverse(node.right)
         }
-
+        traverse(this.root)
         return result
     }
 
@@ -139,7 +140,7 @@ class BST {
             // capture root node value
             result.push(node.value)
         }
-
+        traverse(this.root)
         return result
     }
 
@@ -155,7 +156,7 @@ class BST {
         while(queue.length){
             let currentNode = queue.shift()
 
-            result.push(currentNode)
+            result.push(currentNode.value)
 
             if(currentNode.left) {
                 queue.push(currentNode.left)
@@ -179,3 +180,21 @@ bst.insert(28)
 bst.insert(39)
 
 console.log(bst)
+console.log(bst.size())
+console.log(bst.min())
+console.log(bst.max())
+console.log(bst.contains(2))
+console.log(bst.contains(9))
+
+// DFS
+// in-order: 2, 3, 12, 15, 28, 36, 39
+console.log(bst.dfsInOrder())
+
+// pre-order: 15, 3, 2, 12, 36, 28, 39
+console.log(bst.dfsPreOrder())
+
+// post-order: 2, 12, 3, 28, 39, 36, 15
+console.log(bst.dfsPostOrder())
+
+// BFS: 15, 3, 36, 2, 12, 28, 39
+console.log(bst.bfs())
